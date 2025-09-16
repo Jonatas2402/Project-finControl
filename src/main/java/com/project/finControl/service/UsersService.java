@@ -5,6 +5,8 @@ import com.project.finControl.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UsersService {
@@ -17,5 +19,8 @@ public class UsersService {
 
     public void delete(Users users){
         repository.delete(users);
+    }
+    public Optional<Users> buscarPorId(Long id){
+        return repository.findById(id);
     }
 }

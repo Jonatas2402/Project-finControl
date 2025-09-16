@@ -18,6 +18,7 @@ public class TransactionService {
     private final TransactionRepository transactionRepository;
     private final UsersRepository usersRepository;
 
+    //Cria uma transação
     public TransactionResponseDTO save(TransactionRequestDTO dto){
         Users users = usersRepository.findById(dto.usersId())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
@@ -25,4 +26,5 @@ public class TransactionService {
 
         return TransactionResponseDTO.fromEntity(saved);
     }
+
 }

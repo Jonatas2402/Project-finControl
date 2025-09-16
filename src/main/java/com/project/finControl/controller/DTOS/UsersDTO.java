@@ -1,9 +1,14 @@
 package com.project.finControl.controller.DTOS;
 
 import com.project.finControl.model.Users;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
-public record UsersDTO(String name,
+public record UsersDTO(@NotBlank(message = "O nome é obrigatório.")
+                       String name,
+                       @Email(message = "O email precisa ser preenchido.")
                        String email,
+                       @NotBlank(message = "Senha é obrigatório.")
                        String password) {
 
     public Users mapearUser(){
