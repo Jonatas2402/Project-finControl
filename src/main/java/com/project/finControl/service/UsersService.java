@@ -46,7 +46,6 @@ public class UsersService {
 
         return usersMapper.toResponse(repository.save(users));
     }
-
     public void delete(Long id){
         repository.deleteById(id);;
     }
