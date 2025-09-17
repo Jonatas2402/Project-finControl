@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UsersMapper {
+    Users map(Long usersId);
     //DTO -> entity
     Users toEntity (UsersRequestDTO dot);
 

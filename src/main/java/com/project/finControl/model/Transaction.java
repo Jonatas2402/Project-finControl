@@ -26,7 +26,7 @@ public class Transaction {
     @Column(name = "date")
     private LocalDateTime date;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_users")
+    @JoinColumn(name = "users_id")
     private Users users;
 
 }
