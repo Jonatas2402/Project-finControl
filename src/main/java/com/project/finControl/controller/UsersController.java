@@ -1,10 +1,12 @@
 package com.project.finControl.controller;
 
-import com.project.finControl.controller.DTOS.UsersDTO;
+import com.project.finControl.controller.DTOS.UsersRequestDTO;
+import com.project.finControl.controller.DTOS.UsersResponseDTO;
 import com.project.finControl.model.Users;
 import com.project.finControl.service.UsersService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,20 +22,15 @@ public class UsersController {
 
     //Implementação de salvar um usuário.
     @PostMapping
-    public ResponseEntity<Void> salvar(@RequestBody @Valid UsersDTO dto){
-        var usaerEntidade = dto.mapearUser();
-        service.save(usaerEntidade);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<UsersResponseDTO> salvar(@RequestBody @Valid UsersRequestDTO dto){
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
     //Implementação de deletar um usuário.
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deletar (@PathVariable("id") Long id){
-        Optional<Users> usersOptional = service.buscarPorId(id);
-        if (usersOptional.isEmpty()){
-            return ResponseEntity.notFound().build();// Caso não exista usuário ele apresentará um erro.
-        }
-        service.delete(usersOptional.get());
-        return ResponseEntity.noContent().build();
+    public void deletar (@PathVariable("id") Long id){
+        service.delete(id);
     }
 
 }

@@ -9,6 +9,8 @@ import com.project.finControl.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Collections;
 
 @Service
@@ -19,12 +21,5 @@ public class TransactionService {
     private final UsersRepository usersRepository;
 
     //Cria uma transação
-    public TransactionResponseDTO save(TransactionRequestDTO dto){
-        Users users = usersRepository.findById(dto.usersId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-        Transaction saved = transactionRepository.save(dto.toEntity(users));
-
-        return TransactionResponseDTO.fromEntity(saved);
-    }
 
 }
